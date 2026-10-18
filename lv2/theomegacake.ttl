@@ -24,7 +24,7 @@
     doap:name "The Omega Cake" ;
     lv2:project <https://nylarea.com/nlsounds> ;
     lv2:minorVersion 1 ;
-    lv2:microVersion 0 ;
+    lv2:microVersion 2 ;
     lv2:optionalFeature lv2:hardRTCapable ;
     ui:ui <https://nylarea.com/plugins/omegacake#ui> ;
 

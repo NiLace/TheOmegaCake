@@ -435,6 +435,11 @@ void apply_model_and_factor(Plugin* p)
     // HQ switched: re-tune the resampler and re-prepare the model at the new
     // (oversampled) rate. Rare, user-driven; the re-prepare resets cap states
     // (a click) and re-biases -- acceptable on a quality switch.
+    // The knobs are not re-read here, unlike activate(): run() has already
+    // applied the ports' knobs to the engine, and prepare() re-solves the rest
+    // at the knobs it holds (the Lost Pumpkin's rest depends on neither rate nor
+    // knobs and is solved once, at construction), so the toggle lands on
+    // activate()'s rest point.
     const bool want_hq = p->hq_port ? (*p->hq_port > 0.5f) : p->cur_hq;
     if (want_hq != p->cur_hq) {
         p->cur_hq = want_hq;

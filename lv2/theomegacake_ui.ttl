@@ -27,4 +27,16 @@
         ui:plugin <https://nylarea.com/plugins/omegacake> ;
         lv2:symbol "enabled" ;
         ui:protocol ui:floatProtocol
+    ] , [
+        ui:plugin <https://nylarea.com/plugins/omegacake> ;
+        lv2:symbol "hq" ;
+        ui:protocol ui:floatProtocol
+    ] , [
+        ui:plugin <https://nylarea.com/plugins/omegacake> ;
+        lv2:symbol "tone_bypass" ;
+        ui:protocol ui:floatProtocol
+    ] , [
+        ui:plugin <https://nylarea.com/plugins/omegacake> ;
+        lv2:symbol "tone_switch" ;
+        ui:protocol ui:floatProtocol
     ] .

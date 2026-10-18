@@ -43,10 +43,10 @@ Knob changes are smoothed (a glide of about 20 ms), so automation and fast turns
 
 | models (port value) | Sustain | Tone | Volume |
 |---|---|---|---|
-| The Pyramid (0), Gain Pyramid (1), Scooped Pyramid (2), Fat Pyramid (3), Bass Pyramid (7), Inverted Pyramid (8), Alpha Goat (11), Beta Violet Goat (12), Pink Goat (13), Violet Goat (14), Blue Goat (15), White Goat (16), Singer Goat (17), Boxed Goat (18), Beaver Goat (19), Jumbo Goat (21), Jumbo Open Goat (22), Goat&S OD (23), Dirty Goat (24), Raw Cake (26), Jumbo Colour Cake (27), Classic Cake (28), Reversed Cake (32), Red Army (33), Crimson Army (34), Cake War (35), Black Cake (36), NYC Cake (37), Brooklyn Cake (38), Inflatable Johnson (39), Precision Cake (40), Dreamy Cake (42), Lost Pumpkin (44) | Linear | Linear | Linear |
+| The Pyramid (0), Gain Pyramid (1), Scooped Pyramid (2), Fat Pyramid (3), Bass Pyramid (7), Inverted Pyramid (8), Alpha Goat (11), Beta Violet Goat (12), Pink Goat (13), Violet Goat (14), Blue Goat (15), White Goat (16), Singer Goat (17), Boxed Goat (18), Beaver Goat (19), Jumbo Goat (21), Jumbo Open Goat (22), Goat&S OD (23), Dirty Goat (24), Raw Cake (26), Jumbo Colour Cake (27), Classic Cake (28), Reversed Cake (32), Red Army (33), Crimson Army (34), Cake War (35), Black Cake (36), NYC Cake (37), Inflatable Johnson (39), Precision Cake (40), Dreamy Cake (42), Lost Pumpkin (44) | Linear | Linear | Linear |
 | Green Pyramid (4), Vintage Pyramid (5), Super Pyramid (9), Super New Pyramid (10), Coloured Goat (20) | Log | Log | Log |
 | Master Pyramid (6) | Log | Linear | Linear |
-| Distortion & Cake (25) | Linear | Linear | Log |
+| Distortion & Cake (25), Brooklyn Cake (38) | Linear | Linear | Log |
 | German Cake (41) | Log | Linear | Log |
 | Pumpkin Cake (29), Guru Cake (31) | Linear | Linear | Log |
 | Mini Pumpkin (30), Little Pumpkin (43) | no knob (fuzz fixed at maximum) | no knob (Tone Switch, §3) | Log |
@@ -105,12 +105,13 @@ engaged or bypassed, so the host's delay compensation never has to change.
 
 **Changing model at 96 or 192 kHz with very small buffers.** Selecting another model (or switching HQ)
 settles the new circuit at its operating point before it plays, and that happens inside one audio block.
-At 96 or 192 kHz with a 32-sample buffer, that block can take longer than the block lasts, and the host
-may drop it: a short dropout when the model changes, which some hosts report as an xrun. Playback after
-the change is unaffected, and so is the CPU use while playing. On an i7-8700K, 32-sample blocks,
-HQ on: the model-change block takes 150-300 µs at 192 kHz (the block lasts 167 µs) and about 370 µs at
-96 kHz (333 µs). At 48 kHz it fits (about 330 of 667 µs). At 44.1 or 48 kHz, or with buffers of 128
-samples or more, it does not happen.
+With a 32-sample buffer that block can take longer than the block lasts at high sample rates, and the host
+may drop it: a short dropout when the model changes, which some hosts report as an xrun. Playback after the
+change is unaffected, and so is the CPU use while playing. On an i7-8700K, 32-sample blocks (the
+worst block, entering the model): at 44.1 and 48 kHz every model fits, the slowest (Vintage Pyramid) in about
+350 of 667-726 µs; at 96 kHz (333 µs per block) only the Vintage Pyramid can run over, by a few percent; at
+192 kHz (167 µs) most models take 170-340 µs and can run over. The Lost Pumpkin takes about 60 µs at every
+rate. With buffers of 64 samples at 96 kHz, or 128 samples at 192 kHz, it does not happen.
 
 ## 5. The footswitch (bypass)
 

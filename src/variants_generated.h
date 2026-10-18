@@ -2847,7 +2847,7 @@ inline constexpr CakeVariant V9_Brooklyn_Cake = {
 
     .taper_sustain = PotTaper::Linear,
     .taper_tone    = PotTaper::Linear,
-    .taper_volume  = PotTaper::Linear,
+    .taper_volume  = PotTaper::Log,
 };
 
 inline constexpr CakeVariant Vm_Inflatable_Johnson = {

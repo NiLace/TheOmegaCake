@@ -34,8 +34,10 @@
 // network, block 3 the tone network, block 4 the output stage, C17 and the volume pot. Capacitors are trapezoidal,
 // except the op-amps' compensation capacitor C2 (TOCAKE_LP_C2_RULE): its closed-loop mode sits far above Nyquist once
 // the feedback diodes conduct, where the trapezoid does not damp.
-// The rest point is solved on the whole nodal network with source stepping (prepare() only, not real time) and does
-// not depend on the knobs (every pot sits behind a coupling capacitor); reset() restores it.
+// The rest point is solved on the whole nodal network with source stepping, once, in the constructor (not real time):
+// it does not depend on the rate (the capacitors are open) nor on the knobs (every pot sits behind a coupling
+// capacitor), so it is solved with the pots at their construction positions and prepare() does not repeat it (it
+// would cost about 1.4 ms, longer than an audio block, on a model change or an HQ toggle). reset() restores it.
 //
 // THE NEWTON'S FORM. Every source is affine in one function of its port (exp(v / V_T), or the feedback
 // pair's e - 1/e), so the Newton runs on the ports' functions, not on the sources. A clamp diode
@@ -308,7 +310,11 @@ struct Block {
 class LostPumpkin {
     using Block = lp_detail::Block;
 public:
-    explicit LostPumpkin(const LostPumpkinParams& p) noexcept : p_(p) { describe(); }
+    explicit LostPumpkin(const LostPumpkinParams& p) noexcept : p_(p) {
+        describe();
+        apply_sustain(); apply_tone();   // the pots at their construction positions (the rest does not depend on them)
+        solve_rest();
+    }
 
     void prepare(double sample_rate) noexcept {
         fs_ = sample_rate;
@@ -322,11 +328,10 @@ public:
         prepared_ = true;
         apply_sustain(); apply_tone(); apply_volume();
         for (Block& b : blk_) refactor(b);
-        solve_rest();
         reset();
     }
 
-    // Every state back to the rest point (solved in prepare(); it does not depend on the knobs).
+    // Every state back to the rest point (solved in the constructor; it depends on neither the rate nor the knobs).
     void reset() noexcept {
         for (Block& b : blk_) {
             for (int k = 0; k < b.nc; ++k) { b.v1[k] = b.v2[k] = b.r_v1[k]; b.i1[k] = 0.0; }

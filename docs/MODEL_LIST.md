@@ -57,8 +57,8 @@ values in `src/variants_generated.h` are generated.
 | 34 | Crimson Army | four-transistor | 1993 | second edition, "circa 1993-1994" | spreadsheet |
 | 35 | Cake War | four-transistor | 1993 | no single production unit; the year of the schematic it follows, chosen | spreadsheet |
 | 36 | Black Cake | four-transistor | 1995 | "from around 1995" | spreadsheet |
-| 37 | NYC Cake | four-transistor | 2000 | first edition of the reissue, "in 2000" | spreadsheet |
-| 38 | Brooklyn Cake | four-transistor | 2008 | fourth edition, "in 2008" | spreadsheet |
+| 37 | NYC Cake | four-transistor | 2000 | first edition of the reissue, "in 2000": the first reissue board, with Schottky clipping diodes (its next revision differs only in the bypass wiring, which is not modelled) | spreadsheet; pot tapers measured on a unit of this board |
+| 38 | Brooklyn Cake | four-transistor | 2008 | fourth edition, "in 2008" | spreadsheet; Volume 500k log as the written sources give this board; Sustain and Tone linear, as measured on the earlier board |
 | 39 | Inflatable Johnson | four-transistor | 1995 | "got its start in 1995" | spreadsheet |
 | 40 | Precision Cake | own engine (simplified tone stack without the mid notch, output-stage emitter bypass) | 2008 | "in the late 2000s" (2008 chosen) | spreadsheet |
 | 41 | German Cake | own engine (as Precision Cake) | 2002 | "circa 2002" | spreadsheet |

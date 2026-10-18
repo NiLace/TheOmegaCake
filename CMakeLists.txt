@@ -11,7 +11,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(TheOmegaCake
-    VERSION     1.0.0
+    VERSION     1.0.2
     DESCRIPTION "The Omega Cake - fuzz pedal modelling plugin (LV2), 45 models"
     LANGUAGES   CXX
 )

@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.0.2 — 2026-10-19
+
+LV2 version pair in `lv2/theomegacake.ttl`: `lv2:minorVersion 1`, `lv2:microVersion 2` (an odd micro marks a
+development build in LV2, so there is no 1.0.1).
+
+### Changed
+
+- **Brooklyn Cake** (model 38): its Volume pot is now **logarithmic** (500k log), as the written sources give the
+  board it models. With Volume at full nothing changes; at part travel it is quieter than in 1.0.0 (about 6 dB at
+  noon), as a log pot is. Sustain and Tone stay linear. Sessions that use model 38 with Volume below full will sound
+  quieter; raise Volume to match.
+
+### Fixed
+
+- **Lost Pumpkin** (model 44): selecting it, or switching **HQ** while it is selected, no longer takes about
+  1.3 ms inside one audio block (longer than a 32-sample block at any rate, so a host with a small buffer could
+  drop out). Its rest point does not depend on the rate or the knobs and is now worked out once, when the plugin
+  is loaded: the switch now costs about 60-80 us on an i7-8700K, below every other model. The sound is unchanged
+  (at most one least significant bit of a 24-bit sample).
+
+- The editor now asks the host for the **HQ**, **Tone Bypass** and **Tone Switch** ports
+  (`ui:portNotification` in `lv2/theomegacake_ui.ttl`). A host that sends the editor only the ports it lists
+  could show those three switches in a stale position after automation or a preset change.
+
 ## 1.0.0 — first public version
 
 LV2 version pair in `lv2/theomegacake.ttl`: `lv2:minorVersion 1`, `lv2:microVersion 0`.

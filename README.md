@@ -115,7 +115,7 @@ The easy way — no compiler needed. Grab the prebuilt bundle from the
 
 ```sh
 mkdir -p ~/.lv2
-tar -xzf TheOmegaCake-1.0.0-linux-x86_64.tar.gz -C ~/.lv2/
+tar -xzf TheOmegaCake-1.0.2-linux-x86_64.tar.gz -C ~/.lv2/
 ```
 
 That leaves `TheOmegaCake.lv2/` under `~/.lv2/`. Restart your host (or rescan plugins) and it shows up as **The
