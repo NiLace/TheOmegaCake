@@ -1,0 +1,170 @@
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix units: <http://lv2plug.in/ns/extensions/units#> .
+@prefix ui:    <http://lv2plug.in/ns/extensions/ui#> .
+
+<https://nylarea.com/nlsounds#me>
+    a foaf:Person ;
+    foaf:name "NL Sounds" ;
+    foaf:homepage <https://github.com/NiLace> ;
+    foaf:mbox <mailto:nilace@nylarea.com> .
+
+<https://nylarea.com/nlsounds>
+    a doap:Project ;
+    doap:name "The Omega Cake" ;
+    doap:license <https://spdx.org/licenses/AGPL-3.0-only> ;
+    doap:maintainer <https://nylarea.com/nlsounds#me> ;
+    doap:developer <https://nylarea.com/nlsounds#me> .
+
+<https://nylarea.com/plugins/omegacake>
+    a lv2:Plugin , lv2:DistortionPlugin ;
+    doap:name "The Omega Cake" ;
+    lv2:project <https://nylarea.com/nlsounds> ;
+    lv2:minorVersion 1 ;
+    lv2:microVersion 0 ;
+    lv2:optionalFeature lv2:hardRTCapable ;
+    ui:ui <https://nylarea.com/plugins/omegacake#ui> ;
+
+    lv2:port [
+        a lv2:AudioPort , lv2:InputPort ;
+        lv2:index 0 ;
+        lv2:symbol "in" ;
+        lv2:name "In"
+    ] , [
+        a lv2:AudioPort , lv2:OutputPort ;
+        lv2:index 1 ;
+        lv2:symbol "out" ;
+        lv2:name "Out"
+    ] , [
+        a lv2:ControlPort , lv2:InputPort ;
+        lv2:index 2 ;
+        lv2:symbol "sustain" ;
+        lv2:name "Sustain" ;
+        lv2:default 0.8 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0
+    ] , [
+        a lv2:ControlPort , lv2:InputPort ;
+        lv2:index 3 ;
+        lv2:symbol "tone" ;
+        lv2:name "Tone" ;
+        lv2:default 0.5 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0
+    ] , [
+        a lv2:ControlPort , lv2:InputPort ;
+        lv2:index 4 ;
+        lv2:symbol "volume" ;
+        lv2:name "Volume" ;
+        lv2:default 0.6 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0
+    ] , [
+        a lv2:ControlPort , lv2:InputPort ;
+        lv2:index 5 ;
+        lv2:symbol "hq" ;
+        lv2:name "HQ" ;
+        rdfs:comment "Higher-quality mode: every model runs at 4x oversampling. Off, each model runs at its own default." ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 1 ;
+        lv2:portProperty lv2:integer , lv2:toggled
+    ] , [
+        a lv2:ControlPort , lv2:OutputPort ;
+        lv2:index 6 ;
+        lv2:symbol "latency" ;
+        lv2:name "Latency" ;
+        lv2:minimum 0 ;
+        lv2:maximum 256 ;
+        lv2:portProperty lv2:reportsLatency , lv2:integer ;
+        units:unit units:frame
+    ] , [
+        a lv2:ControlPort , lv2:InputPort ;
+        lv2:index 7 ;
+        lv2:symbol "model" ;
+        lv2:name "Model" ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 44 ;
+        lv2:portProperty lv2:integer , lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "1971 The Pyramid" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "1970 Gain Pyramid" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "1970 Scooped Pyramid" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "1970 Fat Pyramid" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "1971 Green Pyramid" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "1971 Vintage Pyramid" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "1973 Master Pyramid" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "1972 Bass Pyramid" ; rdf:value 7 ] ;
+        lv2:scalePoint [ rdfs:label "1972 Inverted Pyramid" ; rdf:value 8 ] ;
+        lv2:scalePoint [ rdfs:label "1973 Super Pyramid" ; rdf:value 9 ] ;
+        lv2:scalePoint [ rdfs:label "2022 Super New Pyramid" ; rdf:value 10 ] ;
+        lv2:scalePoint [ rdfs:label "1973 Alpha Goat" ; rdf:value 11 ] ;
+        lv2:scalePoint [ rdfs:label "1973 Beta Violet Goat" ; rdf:value 12 ] ;
+        lv2:scalePoint [ rdfs:label "1973 Pink Goat" ; rdf:value 13 ] ;
+        lv2:scalePoint [ rdfs:label "1973 Violet Goat" ; rdf:value 14 ] ;
+        lv2:scalePoint [ rdfs:label "1974 Blue Goat" ; rdf:value 15 ] ;
+        lv2:scalePoint [ rdfs:label "1974 White Goat" ; rdf:value 16 ] ;
+        lv2:scalePoint [ rdfs:label "1976 Singer Goat" ; rdf:value 17 ] ;
+        lv2:scalePoint [ rdfs:label "1976 Boxed Goat" ; rdf:value 18 ] ;
+        lv2:scalePoint [ rdfs:label "1976 Beaver Goat" ; rdf:value 19 ] ;
+        lv2:scalePoint [ rdfs:label "1973 Coloured Goat" ; rdf:value 20 ] ;
+        lv2:scalePoint [ rdfs:label "1973 Jumbo Goat" ; rdf:value 21 ] ;
+        lv2:scalePoint [ rdfs:label "1973 Jumbo Open Goat" ; rdf:value 22 ] ;
+        lv2:scalePoint [ rdfs:label "1974 Goat&S OD" ; rdf:value 23 ] ;
+        lv2:scalePoint [ rdfs:label "1975 Dirty Goat" ; rdf:value 24 ] ;
+        lv2:scalePoint [ rdfs:label "1979 Distortion & Cake" ; rdf:value 25 ] ;
+        lv2:scalePoint [ rdfs:label "1979 Raw Cake" ; rdf:value 26 ] ;
+        lv2:scalePoint [ rdfs:label "1976 Jumbo Colour Cake" ; rdf:value 27 ] ;
+        lv2:scalePoint [ rdfs:label "1977 Classic Cake" ; rdf:value 28 ] ;
+        lv2:scalePoint [ rdfs:label "1978 Pumpkin Cake" ; rdf:value 29 ] ;
+        lv2:scalePoint [ rdfs:label "1978 Mini Pumpkin" ; rdf:value 30 ] ;
+        lv2:scalePoint [ rdfs:label "1978 Guru Cake" ; rdf:value 31 ] ;
+        lv2:scalePoint [ rdfs:label "1979 Reversed Cake" ; rdf:value 32 ] ;
+        lv2:scalePoint [ rdfs:label "1991 Red Army" ; rdf:value 33 ] ;
+        lv2:scalePoint [ rdfs:label "1993 Crimson Army" ; rdf:value 34 ] ;
+        lv2:scalePoint [ rdfs:label "1993 Cake War" ; rdf:value 35 ] ;
+        lv2:scalePoint [ rdfs:label "1995 Black Cake" ; rdf:value 36 ] ;
+        lv2:scalePoint [ rdfs:label "2000 NYC Cake" ; rdf:value 37 ] ;
+        lv2:scalePoint [ rdfs:label "2008 Brooklyn Cake" ; rdf:value 38 ] ;
+        lv2:scalePoint [ rdfs:label "1995 Inflatable Johnson" ; rdf:value 39 ] ;
+        lv2:scalePoint [ rdfs:label "2008 Precision Cake" ; rdf:value 40 ] ;
+        lv2:scalePoint [ rdfs:label "2002 German Cake" ; rdf:value 41 ] ;
+        lv2:scalePoint [ rdfs:label "1999 Dreamy Cake" ; rdf:value 42 ] ;
+        lv2:scalePoint [ rdfs:label "1976 Little Pumpkin" ; rdf:value 43 ] ;
+        lv2:scalePoint [ rdfs:label "2025 Lost Pumpkin" ; rdf:value 44 ]
+    ] , [
+        a lv2:ControlPort , lv2:InputPort ;
+        lv2:index 8 ;
+        lv2:symbol "tone_bypass" ;
+        lv2:name "Tone Bypass" ;
+        rdfs:comment "Takes the tone stack out on the models that had the switch (Raw Cake, Reversed Cake, Pumpkin Cake and Guru Cake). The other models ignore it." ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 1 ;
+        lv2:portProperty lv2:integer , lv2:toggled
+    ] , [
+        a lv2:ControlPort , lv2:InputPort ;
+        lv2:index 9 ;
+        lv2:symbol "enabled" ;
+        lv2:name "Footswitch (Enabled)" ;
+        lv2:designation lv2:enabled ;
+        lv2:default 1 ;
+        lv2:minimum 0 ;
+        lv2:maximum 1 ;
+        lv2:portProperty lv2:integer , lv2:toggled
+    ] , [
+        a lv2:ControlPort , lv2:InputPort ;
+        lv2:index 10 ;
+        lv2:symbol "tone_switch" ;
+        lv2:name "Tone Switch (Little Pumpkin)" ;
+        rdfs:comment "The two-way tone switch of the Little Pumpkin and the Mini Pumpkin, which have no tone knob. The other models ignore it." ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 1 ;
+        lv2:portProperty lv2:integer , lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Dark"   ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Bright" ; rdf:value 1 ]
+    ] .

@@ -1,0 +1,30 @@
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix ui:  <http://lv2plug.in/ns/extensions/ui#> .
+
+<https://nylarea.com/plugins/omegacake#ui>
+    a ui:X11UI ;
+    ui:binary <theomegacake_ui.so> ;
+    lv2:requiredFeature ui:idleInterface ;
+    lv2:optionalFeature ui:noUserResize ;
+    lv2:extensionData ui:idleInterface ;
+    ui:portNotification [
+        ui:plugin <https://nylarea.com/plugins/omegacake> ;
+        lv2:symbol "sustain" ;
+        ui:protocol ui:floatProtocol
+    ] , [
+        ui:plugin <https://nylarea.com/plugins/omegacake> ;
+        lv2:symbol "tone" ;
+        ui:protocol ui:floatProtocol
+    ] , [
+        ui:plugin <https://nylarea.com/plugins/omegacake> ;
+        lv2:symbol "volume" ;
+        ui:protocol ui:floatProtocol
+    ] , [
+        ui:plugin <https://nylarea.com/plugins/omegacake> ;
+        lv2:symbol "model" ;
+        ui:protocol ui:floatProtocol
+    ] , [
+        ui:plugin <https://nylarea.com/plugins/omegacake> ;
+        lv2:symbol "enabled" ;
+        ui:protocol ui:floatProtocol
+    ] .
